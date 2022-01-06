@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>
+    Anim. Sample page</title>
+    <SCRIPT LANGUAGE="JavaScript">
+      var delay = 1000;   // 切り替え周期（m秒）
+      var pages    = 5;   // 画像の枚数
+      //------------------------------------------------
+      var ii = 0;
+      il = new Array();
+      for (i=1; i<=pages; i++) { // 画像は img001.gif から決め打ち
+        il[i] = new imageItem("img00" + i + ".jpg");
+      }
+
+      function imageItem(iloc) {
+        this.image_item = new Image();
+        this.image_item.src = iloc;
+      }
+
+      rotateImage = function () {
+        ii = ii % pages + 1;
+        var new_image = il[ii].image_item.src;
+        document["target1"].src = new_image;
+        setTimeout(rotateImage, delay);
+      }
+      function speedup() {
+        delay /= 2;
+      }
+      function speeddown() {
+        delay *= 2;
+      }
+    </script>
+  </head>
+
+  <body OnLoad="rotateImage('target1')">
+    <FORM>
+      <INPUT TYPE="button" VALUE="Speed up" onClick="speedup()">
+        <INPUT TYPE="button" VALUE="Speed down" onClick="speeddown()">
+        </FORM>
+        <br>
+        <img name="target1" src="img001.jpg" width=441 height=331>
+      </body>
+      </html>
